@@ -1,8 +1,13 @@
 <html>
     <head>
-
+        <title>Cashier</title>
     </head>
     <body>
-        <h1>Casheer</h1>
+        <h1>Cashier</h1>
+        <p>Enter the barcode below to look for a product:</p>
+        <form action="/submit" method="POST">
+            <input type="text" name="barcode" />
+            <input type="submit" value="Submit" />
+        </form>
     </body>
 </html>
