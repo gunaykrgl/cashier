@@ -1,0 +1,23 @@
+{
+    "products": [
+      {
+        "barcode": 123456789,
+        "productName": "Product A",
+        "Image_link": "https://example.com/product_a.jpg",
+        "Quantity": "10"
+      },
+      {
+        "barcode": 987654321,
+        "productName": "Product B",
+        "Image_link": "https://example.com/product_b.jpg",
+        "Quantity": "5"
+      },
+      {
+        "barcode": 456789123,
+        "productName": "Product C",
+        "Image_link": "https://example.com/product_c.jpg",
+        "Quantity": "20"
+      }
+    ]
+  }
+  

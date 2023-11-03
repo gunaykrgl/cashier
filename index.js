@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const productsJson = require('./sampleProducts.json');
 
 const app = express();
 const port = 3000;
@@ -13,6 +14,15 @@ app.get('/', (req, res) => {
 });
 
 app.get("/submit", (req, res) => {
-  console.log(req.query.barcode)
-  res.redirect("/")
+  // Get the barcode from the query string
+  const barcode = req.query.barcode;
+  // Perform a search on the productsJson object
+  const product = productsJson.products.find((product) => product.barcode == barcode);
+
+  if (product) {
+    res.render("product.ejs", product)
+  }
+  else {
+    console.log("Product not found")
+  }
 })
