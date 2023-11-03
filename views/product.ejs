@@ -1,10 +1,13 @@
 <html>
     <head>
-        <title>Result</title>
+        <title>Product</title>
     </head>
     <body>
         <h1>Cashier</h1>
-        <p>Product name: <%= productName%></p>
-        <p>Quantity: <%= Quantity%></p>
+        <p>Product name: <%= product.name%></p>
+        <p>Quantity: <%= product.quantity %></p>
+        <img src= <%= product.imgLink %> alt="Product Image"></img>
+        <br>
+        <button onclick="window.location.href='/';">Back</button>
     </body>
 </html>

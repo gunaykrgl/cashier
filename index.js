@@ -20,7 +20,7 @@ app.get("/submit", (req, res) => {
   const product = productsJson.products.find((product) => product.barcode == barcode);
 
   if (product) {
-    res.render("product.ejs", product)
+    res.render("product.ejs", { product })
   }
   else {
     console.log("Product not found")

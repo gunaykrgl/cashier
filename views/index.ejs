@@ -6,7 +6,14 @@
         <h1>Cashier</h1>
         <p>Enter the barcode below to look for a product:</p>
         <form action="/submit" method="GET">
-            <input type="text" name="barcode" autocomplete="off"placeholder="barcode" autofocus/>
+            <input 
+                type="number" 
+                name="barcode" 
+                autocomplete="off"
+                placeholder="barcode" 
+                autofocus
+                required
+            />
             <input type="submit" value="Submit" />
         </form>
     </body>
