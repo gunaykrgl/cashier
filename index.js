@@ -12,9 +12,7 @@ app.get('/', (req, res) => {
     res.render("index.ejs")
 });
 
-app.post("/submit", (req, res) => {
-  
-  console.log(req.body.barcode);
-
+app.get("/submit", (req, res) => {
+  console.log(req.query.barcode)
   res.redirect("/")
 })
