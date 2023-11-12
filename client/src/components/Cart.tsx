@@ -1,4 +1,5 @@
 import React from "react"
+import { useTable } from 'react-table'
 
 export default function Cart(props: any) {
     const itemsArray = Object.values(props.items)
