@@ -7,6 +7,7 @@ var cors = require("cors");
 
 var indexRouter = require('./routes/index');
 var productRouter = require('./routes/productAPI');
+var barcodeRouter = require('./routes/BarcodeForm');
 var app = express();
 
 // view engine setup
@@ -22,8 +23,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//! app.use('/', indexRouter);
-app.use("/", productRouter)
+app.use('/', indexRouter);
+app.use("/barcode", barcodeRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
