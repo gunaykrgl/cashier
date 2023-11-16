@@ -9,6 +9,8 @@ function App() {
       <div className='barcodePage'>
         <BarcodeForm />
         <Cart items= {[{name: "demo", quantity:"2", price:"5"}]}/>
+        
+        
       </div>
     </>
   )

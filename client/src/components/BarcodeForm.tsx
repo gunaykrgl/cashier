@@ -5,15 +5,22 @@ class BarcodeForm extends React.Component {
     
     handleSubmit = (event: any) => {
         event.preventDefault()
-        const barcode = event.target.barcode.value
-        console.log(barcode)
-        
+        const barcode = Number(event.target.barcode.value)
+        //! VALIDATE BARCODE HERE (int, string etc)
+
         //! CHANGE THE NEXT LINE, IT'S JUST A LAZY WAY OF CLEANING THE FORM
         event.target.barcode.value = ''
 
-        fetch('http://localhost:9000/api/barcode/lookup', {
+        fetch('http://localhost:9000/barcode/lookup', {
             method: 'POST',
-            body: barcode,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({barcode: barcode})
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            console.log(res)
         })
     }
     render() {
