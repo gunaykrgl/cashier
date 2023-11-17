@@ -11,7 +11,7 @@ class BarcodeForm extends React.Component {
         //! CHANGE THE NEXT LINE, IT'S JUST A LAZY WAY OF CLEANING THE FORM
         event.target.barcode.value = ''
 
-        fetch('http://localhost:9000/barcode/lookup', {
+        fetch('http://localhost:9000/barcode/addToCart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ class BarcodeForm extends React.Component {
     render() {
         return (
             <div className='barcodeLookup'>
-                <p>Enter the barcode below to look for a product:</p>
+                <p>Enter the barcode below to add a product to cart:</p>
                 <form onSubmit={this.handleSubmit} method="GET">
                     <input
                         type="number"

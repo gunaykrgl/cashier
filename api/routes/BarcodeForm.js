@@ -15,14 +15,17 @@ router.get("/", function(req, res, next) {
     res.send("Barcode form")
 })
 
-router.post("/lookup", function(req, res, next) {
+router.get("/cart", function(req, res, next) {
+  res.send(Cart)
+})
+
+router.post("/addToCart", function(req, res, next) {
   barcode = req.body.barcode
   const filtered_list = productsList.filter(product => {
     return product.barcode == barcode
   })
   if (filtered_list.length != 0) {
-    Cart.push(filtered_list[0])
-    console.log(Cart)
+    Cart.push({...filtered_list[0], quantity: 1})
   }
 })
 
