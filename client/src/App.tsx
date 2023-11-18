@@ -17,7 +17,25 @@ function App() {
     const barcode = Number(event.target.barcode.value)
     //! VALIDATE BARCODE HERE (int, string etc)
     const product = productsList.find((product) => product.barcode == barcode)
-    setCart([...cart, product])
+    // Check if the product is in the cart
+    const isProductInCart = cart.find(product => product.barcode === barcode);
+
+    if (isProductInCart) {
+      const updatedCart = cart.map(product => {
+        if (product.barcode === barcode) {
+          return {
+            ...product,
+            quantity: product.quantity + 1
+          }
+        }
+        return product
+      })
+      setCart(updatedCart)
+    }
+    else {
+      setCart([...cart, { ...product, quantity: 1 }])
+    }
+
     //! CHANGE THE NEXT LINE, IT'S JUST A LAZY WAY OF CLEANING THE FORM
     event.target.barcode.value = ''
   }
