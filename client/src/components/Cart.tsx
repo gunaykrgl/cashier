@@ -1,10 +1,8 @@
-import React from "react"
-import { useTable } from 'react-table'
 import "./Cart.css"
 
 export default function Cart(props: any) {
     const itemsArray = Object.values(props.items)
-    
+
     return (
         <div className="cartTable">
             <table>
