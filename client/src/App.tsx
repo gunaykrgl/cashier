@@ -3,9 +3,16 @@ import Cart from "./components/Cart"
 import Navbar from './components/Navbar'
 import React, { useState, useEffect } from 'react'
 
+interface Product {
+  name: string;
+  quantity: number;
+  price: number;
+  barcode: Number;
+}
+
 function App() {
-  const [cart, setCart] = useState([])
-  const [productsList, setProductsList] = useState([])
+  const [cart, setCart] = useState<Product[]>([])
+  const [productsList, setProductsList] = useState<Product[]>([])
   useEffect(() => {
     fetch('http://localhost:9000/getProductsList')
       .then((res) => res.json())
@@ -14,7 +21,7 @@ function App() {
 
   function handleSubmit(event: any) {
     event.preventDefault()
-    const barcode = Number(event.target.barcode.value)
+    const barcode:Number = Number(event.target.barcode.value)
     //! VALIDATE BARCODE HERE (int, string etc)
     const product = productsList.find((product) => product.barcode == barcode)
     // Check if the product is in the cart
@@ -33,7 +40,7 @@ function App() {
       setCart(updatedCart)
     }
     else {
-      setCart([...cart, { ...product, quantity: 1 }])
+      setCart([...cart, { ...product, quantity: 1 } as Product])
     }
 
     //! CHANGE THE NEXT LINE, IT'S JUST A LAZY WAY OF CLEANING THE FORM
