@@ -1,7 +1,7 @@
 import './App.css'
 import Cart from "./components/Cart"
 import Navbar from './components/Navbar'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 interface Product {
   name: string;
