@@ -12,7 +12,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
     }else{
         console.log('Connected to the SQLite database.')
         db.run(`CREATE TABLE IF NOT EXISTS product (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
             barcode INTEGER UNIQUE,
             name text, 
             quantity INTEGER,
@@ -25,8 +25,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 console.log(err)
             }else{
                 // Table just created, creating some rows
-                var insert = 'INSERT INTO product (name, quantity, price) VALUES (?,?,?)'
-                db.run(insert, ["demo", 2, 5])
+                var insert = 'INSERT INTO product (name, quantity, price, barcode) VALUES (?,?,?, ?)'
+                db.run(insert, ["demo", 2, 6, 123456789012])
             }
         });  
     }

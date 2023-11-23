@@ -3,21 +3,23 @@ var router = express.Router();
 var db = require("../database/productDatabase.js");
 
 
-//! Change this with an actual mysql database
-let productsList = [
-  { "name": "demo", "quantity": "2", "price": "5", "barcode": 123456789012 },
-  { "name": "example", "quantity": "3", "price": "7", "barcode": 987654321012 },
-  { "name": "sample", "quantity": "1", "price": "10", "barcode": 567890123456 }
-]
-
 router.get("/", function(req, res, next) {
   res.send("API is working properly");
 })
 
 router.get("/getProductsList", function(req, res, next) {
-  res.send(productsList)
-})
+  // Use db.all to perform the database query
+  db.all('SELECT * FROM product', (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
 
+    // Send the result as JSON to the client
+    res.json(rows);
+  });
+});
 
 
 router.get("/api/products", (req, res, next) => {
