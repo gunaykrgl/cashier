@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
-var db = require("./database/productDatabase.js");
 
 var productRouter = require('./routes/productAPI');
 var barcodeRouter = require('./routes/BarcodeForm.js');
