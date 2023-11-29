@@ -3,11 +3,11 @@ var router = express.Router();
 var db = require("../dbHandlers/productDatabase.js");
 
 
-router.get("/", function(req, res, next) {
-  res.send("API is working properly");
+router.get("/", function (req, res, next) {
+  res.send("Product API");
 })
 
-router.get("/getProductsList", function(req, res, next) {
+router.get("/getProductsList", function (req, res, next) {
   // Use db.all to perform the database query
   db.all('SELECT * FROM product', (err, rows) => {
     if (err) {
@@ -21,20 +21,37 @@ router.get("/getProductsList", function(req, res, next) {
   });
 });
 
+router.get("/getProduct", (req, res, next) => {
+  const barcode = req.query.barcode
+  const sql = "SELECT * FROM product WHERE barcode = ?"
+  const params = [barcode]
+  db.all(sql, params, (err, rows) => {
+    console.log(rows, rows.length === 0)
+    if (rows.length === 0) {
+      res.json({ message: "No Product with given barcode" })
+    }
+    else {
+      res.json({
+        message: "Success",
+        data: rows
+      })
+    }
+  })
+})
 
-router.get("/api/products", (req, res, next) => {
+router.get("/products", (req, res, next) => {
   var sql = "select * from product"
   var params = []
   db.all(sql, params, (err, rows) => {
-      if (err) {
-        res.status(400).json({"error":err.message});
-        return;
-      }
-      res.json({
-          "message":"success",
-          "data":rows
-      })
-    });
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.json({
+      "message": "success",
+      "data": rows
+    })
+  });
 });
 
 

@@ -25,7 +25,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 } else {
                     // Table just created, creating some rows
                     var insert = 'INSERT INTO product (name, quantity, price, barcode) VALUES (?,?,?, ?)'
-                    db.run(insert, ["demo", 2, 6, 123456789012])
+                    // db.run(insert, ["demo 2", 5, 10, 98765432101])
                 }
             });
     }
