@@ -1,42 +1,31 @@
 var express = require('express');
 var router = express.Router();
-var db = require("../dbHandlers/productDatabase.js");
-
+var db = require("../dbHandlers/productDatabase.js"); 
 
 router.get("/", function (req, res, next) {
   res.send("Product API");
 })
 
-router.get("/getProductsList", function (req, res, next) {
-  // Use db.all to perform the database query
-  db.all('SELECT * FROM product', (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      res.status(500).json({ error: 'Internal Server Error' });
-      return;
-    }
+router.get("/getProductsList", async function (req, res, next) {
+  try {
+    const rows = await db.getProducts()
+    res.json(rows)
+  }
+  catch {
+    console.log("some error")
+  }
 
-    // Send the result as JSON to the client
-    res.json(rows);
-  });
 });
 
-router.get("/getProduct", (req, res, next) => {
+router.get("/getProduct", async (req, res, next) => {
   const barcode = req.query.barcode
-  const sql = "SELECT * FROM product WHERE barcode = ?"
-  const params = [barcode]
-  db.all(sql, params, (err, rows) => {
-    console.log(rows, rows.length === 0)
-    if (rows.length === 0) {
-      res.json({ message: "No Product with given barcode" })
-    }
-    else {
-      res.json({
-        message: "Success",
-        data: rows
-      })
-    }
-  })
+  try {
+    const rows = await db.getProduct(barcode)
+    res.send(rows)
+  }
+  catch {
+    console.log("some error")
+  }
 })
 
 

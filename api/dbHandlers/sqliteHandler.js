@@ -29,7 +29,7 @@ class sqliteHandler extends dbHandler.databaseHandler {
 
     async connect() {
         this.db = await sqlite3.open({
-            filename: './db.sqlite',
+            filename: path,
             driver: sqlite3.Database
         });
     }
@@ -41,7 +41,7 @@ class sqliteHandler extends dbHandler.databaseHandler {
     async getProduct(barcode) {
         return new Promise((resolve, reject) => {
             const query = "SELECT * FROM product WHERE barcode = ?";
-            
+
             this.db.all(query, [barcode], (err, rows) => {
                 if (err) {
                     reject(err);
@@ -53,11 +53,22 @@ class sqliteHandler extends dbHandler.databaseHandler {
         )
     }
 
+    async getProducts() {
+        return new Promise((resolve, reject) => {
+            const query = "SELECT * FROM product"
+            this.db.all(query, [], (err, rows) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(rows)
+                }
+            })
+        })
+    }
+
     async set(key, value) {
         this.db.run('INSERT OR REPLACE INTO kv (key, value) VALUES (?, ?)', [key, value]);
     }
 }
 
-module.exports = {
-    sqliteHandler: sqliteHandler
-};
+module.exports = sqliteHandler
