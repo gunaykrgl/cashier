@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require("../dbHandlers/productDatabase.js"); 
+var db = require("../db/Handlers/productDatabase"); 
 
 router.get("/", function (req, res, next) {
   res.send("Product API");
@@ -11,8 +11,8 @@ router.get("/getProductsList", async function (req, res, next) {
     const rows = await db.getProducts()
     res.json(rows)
   }
-  catch {
-    console.log("some error")
+  catch (err){
+    console.log(err)
   }
 
 });
