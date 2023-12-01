@@ -10,7 +10,8 @@ class sqliteHandler extends dbHandler.databaseHandler {
             }
             console.log('Connected to the development database.');
         });
-        const tableCreateQuery = `CREATE TABLE IF NOT EXISTS product (
+        this.tableName = "product";
+        const tableCreateQuery = `CREATE TABLE IF NOT EXISTS ${this.tableName} (
             id INTEGER PRIMARY KEY,
             barcode INTEGER UNIQUE,
             name text, 
