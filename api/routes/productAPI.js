@@ -25,8 +25,7 @@ router.get("/getProduct", async (req, res) => {
   console.log(barcode);
   try {
     const rows = await db.getProduct(barcode);
-    console.log(rows);
-    res.json(rows);
+    res.status(200).json(rows[0]);
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal Server Error" });

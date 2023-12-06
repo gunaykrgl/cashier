@@ -36,11 +36,10 @@ describe('Product API', function () {
 
     describe('/getProduct', function () {
         it('should return a product given a barcode', function (done) {
-            const barcode = '123456789012';
+            const barcode = 123456789012;
             request(app)
-                .get(`/api/products/getProduct?barcode=` + barcode)
+                .get("/api/products/getProduct?barcode=" + barcode)
                 .end(function (err, res) {
-                    console.log("reess  ", res.body);
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.be.an('object');
                     expect(res.body.barcode).to.equal(barcode);
