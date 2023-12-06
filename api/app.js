@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
 
-var productRouter = require('./routes/productAPI');
-var barcodeRouter = require('./routes/BarcodeForm.js');
+var productRouter = require('/home/kayyum/cashier/api/routes/productAPI.js');
+var barcodeRouter = require('/home/kayyum/cashier/api/routes/BarcodeForm.js');
 var app = express();
 
 // view engine setup

@@ -1,6 +1,6 @@
 var sqlite3 = require('sqlite3')
-var dbHandler = require("./databaseHandler.js");
-const tableSchemas = require("../Schemas.js");
+var dbHandler = require("/home/kayyum/cashier/api/db/Handlers/databaseHandler.js");
+const tableSchemas = require("/home/kayyum/cashier/api/db/Schemas.js");
 
 class sqliteHandler extends dbHandler.databaseHandler {
     constructor(path, tableName) {

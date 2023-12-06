@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var db = require("../db/Handlers/productDatabase"); 
+var db = require("/home/kayyum/cashier/api/db/Handlers/productDatabase.js"); 
 
 router.get("/", function (req, res, next) {
   res.send("Product API");
 })
 
-router.get("/getProductsList", async function (req, res, next) {
+// Get all products
+router.get("/getProductsList", async (req, res, next) => {
   try {
     const rows = await db.getProducts()
     res.json(rows)
@@ -17,16 +18,20 @@ router.get("/getProductsList", async function (req, res, next) {
 
 });
 
-router.get("/getProduct", async (req, res, next) => {
-  const barcode = req.query.barcode
+
+// Get Product by barcode
+router.get("/getProduct", async (req, res) => {
+  const barcode = req.query.barcode;
+  console.log(barcode);
   try {
-    const rows = await db.getProduct(barcode)
-    res.send(rows)
+    const rows = await db.getProduct(barcode);
+    console.log(rows);
+    res.json(rows);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal Server Error" });
   }
-  catch {
-    console.log("some error")
-  }
-})
+});
 
 
 module.exports = router;
