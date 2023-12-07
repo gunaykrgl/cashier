@@ -1,5 +1,5 @@
-var sqlite3 = require('sqlite3')
-var dbHandler = require("./databaseHandler.js");
+const sqlite3 = require('sqlite3')
+const dbHandler = require("./databaseHandler.js");
 const tableSchemas = require("../Schemas.js");
 
 class sqliteHandler extends dbHandler.databaseHandler {

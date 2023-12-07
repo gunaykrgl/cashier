@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var config = require("../config.js");
-var path = require("path");
-var db = require(path.join(config.projectRoot, "db", "Handlers", "productDatabase.js"));
+const { Router } = require('express');
+const { join } = require("path");
+
+const router = Router();
+const config = require("../config.js");
+const db = require(join(config.projectRoot, "db", "Handlers", "productDatabase.js"));
 
 router.get("/", function (req, res, next) {
   res.send("Product API");
