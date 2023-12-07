@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var db = require("/home/kayyum/cashier/api/db/Handlers/productDatabase.js"); 
+var config = require("../config.js");
+var path = require("path");
+var db = require(path.join(config.projectRoot, "db", "Handlers", "productDatabase.js"));
 
 router.get("/", function (req, res, next) {
   res.send("Product API");
