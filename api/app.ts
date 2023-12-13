@@ -6,7 +6,7 @@ import logger from 'morgan';
 import cors from "cors";
 
 // @ts-ignore
-import productRouter from './routes/productAPI.js';
+import productRouter from './routes/productAPI.ts';
 
 // @ts-ignore
 import barcodeRouter from './routes/BarcodeForm.js';

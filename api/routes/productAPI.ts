@@ -1,9 +1,9 @@
-const { Router } = require('express');
-const { join } = require("path");
+import { Router } from 'express';
+import { join } from "path";
 
 const router = Router();
-const config = require("../config.js");
-const db = require(join(config.projectRoot, "db", "Handlers", "productDatabase.js"));
+import config from "../config.ts";
+const db = require(join(config.projectRoot, "db", "Handlers", "productDatabase.ts"));
 
 router.get("/", function (req, res, next) {
   res.send("Product API");

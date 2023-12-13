@@ -1,9 +1,9 @@
-const path = require("path")
-const config = require("../../config.js")
+import path from "path"
+import config from "../../config.ts"
 
 const DBSOURCE = path.join(config.projectRoot, "db", "db.sqlite")
 
-const sqliteHandler = require("./sqliteHandler.js") 
+import sqliteHandler from "./sqliteHandler.ts" 
 
 const sqliteHandlerObj = new sqliteHandler(DBSOURCE, "product")
 

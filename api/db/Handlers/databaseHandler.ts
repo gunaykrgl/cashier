@@ -1,6 +1,6 @@
 class databaseHandler {
     constructor() {
-        this.db = null;
+        // this.db = null;
     }
     async connect() {
         throw new Error('Method "connect" must be implemented by subclasses.');
@@ -11,11 +11,9 @@ class databaseHandler {
     async getProducts(){
         throw new Error('Method "get" must be implemented by subclasses.');
     }
-    async getProduct(key) {
+    async getProduct(key:any) {
         throw new Error('Method "get" must be implemented by subclasses.');
     }
 }
 
-module.exports = {
-    databaseHandler: databaseHandler
-};
+export default { databaseHandler }
