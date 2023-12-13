@@ -1,11 +1,15 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require("cors");
-const productRouter = require('./routes/productAPI.js');
-const barcodeRouter = require('./routes/BarcodeForm.js');
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import cors from "cors";
+
+// @ts-ignore
+import productRouter from './routes/productAPI.js';
+
+// @ts-ignore
+import barcodeRouter from './routes/BarcodeForm.js';
 const app = express();
 
 // view engine setup
@@ -26,12 +30,12 @@ app.use("/barcode", barcodeRouter)
 app.use('/', productRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function(req: any, res: any, next: (arg0: any) => void) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err: { message: any; status: any; }, req: { app: { get: (arg0: string) => string; }; }, res: { locals: { message: any; error: any; }; status: (arg0: any) => void; render: (arg0: string) => void; }, next: any) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -41,5 +45,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+const port = process.env.PORT || 9000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 module.exports = app;
