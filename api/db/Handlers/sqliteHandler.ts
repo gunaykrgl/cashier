@@ -1,8 +1,7 @@
 import sqlite3 from 'sqlite3';
 import dbHandler from "./databaseHandler.ts";
 
-// @ts-ignore
-import tableSchemas from "../Schemas.js";
+import * as tableSchemas from "../Schemas.ts" ;
 
 // @ts-ignore
 export default class sqliteHandler extends dbHandler.databaseHandler {
