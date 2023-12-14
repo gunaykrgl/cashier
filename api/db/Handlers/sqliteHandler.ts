@@ -70,10 +70,4 @@ export default class sqliteHandler extends dbHandler.databaseHandler {
             })
         })
     }
-
-    // @ts-ignore
-    async set(key, value) {
-        // @ts-ignore
-        this.db.run('INSERT OR REPLACE INTO kv (key, value) VALUES (?, ?)', [key, value]);
-    }
 }
