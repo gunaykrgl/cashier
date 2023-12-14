@@ -5,23 +5,26 @@ import * as tableSchemas from "../Schemas.ts" ;
 
 // @ts-ignore
 export default class sqliteHandler extends dbHandler.databaseHandler {
-    // @ts-ignore
-    constructor(path, tableName) {
+    private tableName: string;
+    private db: sqlite3.Database;
+    private path: string;
+
+    constructor(path: string, tableName: string) {
         super();
-        // @ts-ignore
+        
         this.tableName = tableName;
-        // @ts-ignore
+        this.path = path;
+
         this.db = new sqlite3.Database(path, (err) => {
             if (err) {
                 console.error(err.message);
             }
             console.log('Connected to the development database.');
         });
-        // @ts-ignore
-        const tableCreateQuery = `CREATE TABLE IF NOT EXISTS ${this.tableName} (${tableSchemas.product})`
-        // @ts-ignore
+        
+        const tableCreateQuery = `CREATE TABLE IF NOT EXISTS ${tableName} (${tableSchemas.product})`
+        
         this.db.run(tableCreateQuery,
-            // @ts-ignore
             (err) => {
                 if (err) {
                     // Table already created
@@ -31,24 +34,17 @@ export default class sqliteHandler extends dbHandler.databaseHandler {
     }
 
     async connect() {
-        // @ts-ignore
-        this.db = await sqlite3.open({
-            // @ts-ignore
-            filename: path,
-            driver: sqlite3.Database
-        });
+        this.db = new sqlite3.Database(this.path);
     }
 
     async close() {
-        // @ts-ignore
         this.db.close();
     }
 
-    // @ts-ignore
-    async getProduct(barcode) {
+    async getProduct(barcode: string): Promise<any> {
         return new Promise((resolve, reject) => {
             const query = "SELECT * FROM product WHERE barcode = ?";
-            // @ts-ignore
+            
             this.db.all(query, [barcode], (err, rows) => {
                 if (err) {
                     reject(err);
@@ -60,12 +56,11 @@ export default class sqliteHandler extends dbHandler.databaseHandler {
         )
     }
 
-    // @ts-ignore
-    async getProducts() {
+    async getProducts() : Promise<any>{
         return new Promise((resolve, reject) => {
-            // @ts-ignore
+            
             const query = "SELECT * FROM " + this.tableName;
-            // @ts-ignore
+            
             this.db.all(query, [], (err, rows) => {
                 if (err) {
                     reject(err)
