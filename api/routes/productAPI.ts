@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import { join } from "path";
-
-const router = Router();
 import config from "../config.ts";
+
 const db = require(join(config.projectRoot, "db", "Handlers", "productDatabase.ts"));
 
+const router = Router();
+
 router.get("/", function (req, res, next) {
-  res.send("Product API");
+  res.send("Product API Main Page");
 })
 
 // Get all products
@@ -20,7 +21,6 @@ router.get("/getProductsList", async (req, res, next) => {
   }
 
 });
-
 
 // Get Product by barcode
 router.get("/getProduct", async (req, res) => {
@@ -36,4 +36,4 @@ router.get("/getProduct", async (req, res) => {
 });
 
 
-module.exports = router;
+export default router;

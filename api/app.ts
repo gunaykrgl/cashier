@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from "cors";
 
-// @ts-ignore
 import productRouter from './routes/productAPI.ts';
 
 // @ts-ignore
