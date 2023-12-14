@@ -7,8 +7,7 @@ import cors from "cors";
 
 import productRouter from './routes/productAPI.ts';
 
-// @ts-ignore
-import barcodeRouter from './routes/BarcodeForm.js';
+
 const app = express();
 
 // view engine setup
@@ -25,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', indexRouter);
-app.use("/barcode", barcodeRouter)
 app.use('/', productRouter);
 
 // catch 404 and forward to error handler
