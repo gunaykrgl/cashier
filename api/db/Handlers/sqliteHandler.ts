@@ -3,7 +3,6 @@ import dbHandler from "./databaseHandler.ts";
 
 import * as tableSchemas from "../Schemas.ts" ;
 
-// @ts-ignore
 export default class sqliteHandler extends dbHandler.databaseHandler {
     private tableName: string;
     private db: sqlite3.Database;
