@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --exec ts-node app.ts",
-    "test": "mocha '/home/kayyum/cashier/api/tests/*.js'"
+    "start": "nodemon --exec ts-node app.ts"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
