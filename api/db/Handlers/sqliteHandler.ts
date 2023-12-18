@@ -40,6 +40,38 @@ export default class sqliteHandler extends dbHandler.databaseHandler {
     async close() {
         this.db.close();
     }
+    
+    // Build a SQL query
+    buildQuery(params: { [key: string]: any }){
+        const keys = Object.keys(params);
+        const values = Object.values(params);
+
+        let query = `SELECT * FROM ${this.tableName} WHERE `;
+
+        keys.forEach((key, index) => {
+            query += `${key} = ?`;
+
+            if (index < keys.length - 1) {
+                query += ' AND ';
+            }
+        });
+
+        return { query, values };
+    }
+
+    async query(params: { [key: string]: any }): Promise<IProduct[]> {
+        return new Promise((resolve, reject) => {
+            const { query, values } = this.buildQuery(params);
+            console.log(query, values);
+            this.db.all(query, values, (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows as IProduct[]);
+                }
+            });
+        });
+    }
 
     async getProduct(barcode: string): Promise<IProduct> {
         return new Promise((resolve, reject) => {
@@ -70,36 +102,5 @@ export default class sqliteHandler extends dbHandler.databaseHandler {
         });
     }
 
-    // Build a SQL query
-    buildQuery(params: { [key: string]: any }){
-        const keys = Object.keys(params);
-        const values = Object.values(params);
-
-        let query = 'SELECT * FROM product WHERE ';
-
-        keys.forEach((key, index) => {
-            query += `${key} = ?`;
-
-            if (index < keys.length - 1) {
-                query += ' AND ';
-            }
-        });
-
-        return { query, values };
-    }
-
-    async query(params: { [key: string]: any }): Promise<IProduct[]> {
-        return new Promise((resolve, reject) => {
-            const { query, values } = this.buildQuery(params);
-            console.log(query, values);
-            this.db.all(query, values, (err, rows) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(rows as IProduct[]);
-                }
-            });
-        });
-    }
 
 }
