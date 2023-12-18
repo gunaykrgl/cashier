@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { join } from "path";
-import config from "../../config.ts";
+import config from "../../config";
 import sqliteHandler from "../../db/Handlers/sqliteHandler.ts" 
 
 // const sqliteHandler: any = require(join(config.projectRoot, "db", "Handlers", "sqliteHandler.ts"));

@@ -4,13 +4,14 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from "cors";
+import config from "../config";
 
 import productRouter from './routes/productAPI';
 
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(config.projectRoot ,'views'));
 app.set('view engine', 'jade');
 
 // Enable CORS for all routes
