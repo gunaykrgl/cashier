@@ -11,7 +11,7 @@ class databaseHandler {
     async getProducts(){
         throw new Error('Method "get" must be implemented by subclasses.');
     }
-    async getProduct(key:any) {
+    async getProduct(key:any) : Promise<any>{
         throw new Error('Method "get" must be implemented by subclasses.');
     }
 }

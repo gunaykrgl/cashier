@@ -3,6 +3,9 @@ import { join } from "path";
 import config from "../../config";
 import sqliteHandler from "../../db/Handlers/sqliteHandler.ts" 
 
+// import interfaces
+import { IProduct } from '../interfaces/product.interface.ts';
+
 // const sqliteHandler: any = require(join(config.projectRoot, "db", "Handlers", "sqliteHandler.ts"));
 const db: any = new sqliteHandler(config.DBSOURCE, "product");
 
@@ -26,12 +29,11 @@ router.get("/getProductsList", async (req: Request, res: Response, next: NextFun
 
 // Get Product by barcode
 router.get("/getProduct", async (req: Request, res: Response) => {
-  // @ts-ignore
-  const barcode: string = req.query.barcode;
+  const barcode: string = req.query?.barcode as string;
   console.log(barcode);
   try {
-    const rows = await db.getProduct(barcode);
-    res.status(200).json(rows[0]);
+    const row = await db.getProduct(barcode);
+    res.status(200).json(row);
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal Server Error" });

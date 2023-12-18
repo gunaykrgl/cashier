@@ -1,6 +1,7 @@
 import sqlite3 from 'sqlite3';
 import dbHandler from "./databaseHandler.ts";
 
+import { IProduct } from "../../src/interfaces/product.interface.ts";
 import * as tableSchemas from "../Schemas.ts" ;
 
 export default class sqliteHandler extends dbHandler.databaseHandler {
@@ -40,7 +41,7 @@ export default class sqliteHandler extends dbHandler.databaseHandler {
         this.db.close();
     }
 
-    async getProduct(barcode: string): Promise<any> {
+    async getProduct(barcode: string): Promise<IProduct> {
         return new Promise((resolve, reject) => {
             const query = "SELECT * FROM product WHERE barcode = ?";
             
@@ -48,11 +49,10 @@ export default class sqliteHandler extends dbHandler.databaseHandler {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(rows);
+                    resolve(rows[0] as IProduct);
                 }
             });
-        }
-        )
+        });
     }
 
     async getProducts() : Promise<any>{
