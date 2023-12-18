@@ -16,7 +16,7 @@ router.get("/", function (req: Request, res: Response, next: NextFunction) {
 router.get("/getProductsList", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const rows = await db.getProducts()
-    res.json(rows)
+    res.status(200).json(rows)
   }
   catch (err){
     console.log(err)
