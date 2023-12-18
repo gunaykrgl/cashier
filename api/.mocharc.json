@@ -1,0 +1,6 @@
+{
+    "extension": ["ts", "js", "mjs"],
+    "timeout": "10000",
+    "exit": true,
+    "require": "ts-node/register"
+}
