@@ -1,22 +1,11 @@
-class databaseHandler {
-    constructor() {
-        // this.db = null;
-    }
-    async connect() {
-        throw new Error('Method "connect" must be implemented by subclasses.');
-    }
-    async close() {
-        throw new Error('Method "close" must be implemented by subclasses.');
-    }
-    async getProducts() : Promise<any>{
-        throw new Error('Method "get" must be implemented by subclasses.');
-    }
-    async getProduct(key:any) : Promise<any>{
-        throw new Error('Method "get" must be implemented by subclasses.');
-    }
-    async query(params: { [key: string]: any }): Promise<any> {
-        throw new Error('Method "query" must be implemented by subclasses.');
-    }
+import { IProduct } from "../../src/interfaces/product.interface"
+
+abstract class databaseHandler {
+    abstract connect(): Promise<void>;
+    abstract close(): Promise<void>;
+    abstract getProducts(): Promise<any>; 
+    abstract getProduct(key: any): Promise<IProduct>;
+    abstract query(params: { [key: string]: any }): Promise<any>;
 }
 
 export default { databaseHandler }
