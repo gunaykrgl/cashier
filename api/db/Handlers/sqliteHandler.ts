@@ -102,5 +102,19 @@ export default class sqliteHandler extends dbHandler.databaseHandler {
         });
     }
 
+    async updateProductQuantity(barcode: string, quantity: number): Promise<void> {
+        //? This is only for reducing the quantity in db after a sale
+        
+        return new Promise((resolve, reject) => {
+            const query = "UPDATE product SET quantity = quantity - ? WHERE barcode = ?";
+            this.db.run(query, [quantity, barcode], (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
 
 }

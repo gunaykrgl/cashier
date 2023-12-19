@@ -6,6 +6,7 @@ abstract class databaseHandler {
     abstract getProducts(): Promise<any>; 
     abstract getProduct(key: any): Promise<IProduct>;
     abstract query(params: { [key: string]: any }): Promise<any>;
+    abstract updateProductQuantity(barcode: string, quantity: number): Promise<void>;
 }
 
 export default { databaseHandler }

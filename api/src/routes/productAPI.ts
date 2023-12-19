@@ -51,8 +51,8 @@ router.get("/query", async (req: Request, res: Response) => {
 
 // Make the purchase
 router.post("/finalizeCart", async (req: Request, res: Response) => {
-  const cartItems: { barcode: string, quantity: number }[] = req.body.cartItems;
-
+  const cartItems: { barcode: string, quantity: number }[] = req.body;
+  console.log(cartItems);
   try {
     for (const item of cartItems) {
       const { barcode, quantity } = item;
