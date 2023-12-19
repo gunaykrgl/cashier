@@ -49,4 +49,21 @@ router.get("/query", async (req: Request, res: Response) => {
   }
 });
 
+// Make the purchase
+router.post("/finalizeCart", async (req: Request, res: Response) => {
+  const cartItems: { barcode: string, quantity: number }[] = req.body.cartItems;
+
+  try {
+    for (const item of cartItems) {
+      const { barcode, quantity } = item;
+      await db.updateProductQuantity(barcode, quantity);
+    }
+    res.status(200).json({ message: "Cart finalized successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 export default router;
