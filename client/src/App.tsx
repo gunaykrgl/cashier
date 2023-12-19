@@ -47,13 +47,19 @@ function App() {
     event.target.barcode.value = ''
   }
   function finalizePurchase(cart: any) {
-    console.log(cart)
-    fetch('http://localhost:9000/barcode/finalize', {
+    const productsToSend = cart.map((product: any) => {
+      return {
+        barcode: product.barcode,
+        quantity: product.quantity
+      }
+    })
+    console.log(productsToSend)
+    fetch('http://localhost:9000/finalizeCart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(cart)
+      body: JSON.stringify(productsToSend)
     })
 
     setCart([])
