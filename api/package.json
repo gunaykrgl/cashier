@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --exec ts-node ./src/app.ts"
+    "start": "nodemon --exec ts-node ./src/app.ts",
+    "test": "npx mocha"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
