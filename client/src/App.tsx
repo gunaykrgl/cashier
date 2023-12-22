@@ -26,6 +26,10 @@ function App() {
     const barcode: Number = Number(event.target.barcode.value)
     //! VALIDATE BARCODE HERE (int, string etc)
     const product: Product | undefined = productsList.find((product) => product.barcode == barcode)
+    if (!product) {
+      alert('Product not found')
+      return
+    }
     // Check if the product is in the cart
     const productInCart = cart.find(product => product.barcode === barcode);
 
