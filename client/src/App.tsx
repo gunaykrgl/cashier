@@ -76,6 +76,12 @@ function finalizePurchase(cart: any) {
 
   setCart([])
 }
+
+const removeItem = (itemId: string) => {
+  const updatedCart = cart.filter(product => product.barcode !== itemId)
+  setCart(updatedCart)
+}
+
 return (
   <>
     <Navbar />
@@ -95,7 +101,7 @@ return (
           <input type="submit" value="Submit" />
         </form>
       </div>
-      <Cart items={cart} />
+      <Cart items={cart} removeItem = { removeItem }/>
       <button onClick={() => finalizePurchase(cart)}>Complete</button>
     </div>
   </>
