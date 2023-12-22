@@ -55,57 +55,58 @@ function App() {
     }
 
 
-  //! CHANGE THE NEXT LINE, IT'S JUST A LAZY WAY OF CLEANING THE FORM
-  event.target.barcode.value = ''
-}
-function finalizePurchase(cart: any) {
-  const productsToSend = cart.map((product: any) => {
-    return {
-      barcode: product.barcode,
-      quantity: product.quantity
-    }
-  })
-  console.log(productsToSend)
-  fetch('http://localhost:9000/finalizeCart', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(productsToSend)
-  })
+    //! CHANGE THE NEXT LINE, IT'S JUST A LAZY WAY OF CLEANING THE FORM
+    event.target.barcode.value = ''
+  }
+  function finalizePurchase(cart: any) {
+    const productsToSend = cart.map((product: any) => {
+      return {
+        barcode: product.barcode,
+        quantity: product.quantity
+      }
+    })
+    console.log(productsToSend)
+    fetch('http://localhost:9000/finalizeCart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(productsToSend)
+    })
 
-  setCart([])
-}
+    setCart([])
+  }
 
-const removeItem = (itemId: string) => {
-  const updatedCart = cart.filter(product => product.barcode !== itemId)
-  setCart(updatedCart)
-}
+  const removeItem = (itemId: string) => {
+    const updatedCart = cart.filter(product => product.barcode !== itemId)
+    setCart(updatedCart)
+  }
 
-return (
-  <>
-    <Navbar />
-    <div className='barcodePage'>
-      <div className='barcodeLookup'>
-        <p>Enter the barcode below to add a product to cart:</p>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="number"
-            name="barcode"
-            autoComplete="off"
-            placeholder="barcode"
+  return (
+    <>
+      <Navbar />
+      <div className='barcodePage'>
+        <div className='barcodeLookup'>
+          <p>Enter the barcode below to add a product to cart:</p>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="number"
+              name="barcode"
+              autoComplete="off"
+              placeholder="barcode"
 
-            autoFocus
-            required
-          />
-          <input type="submit" value="Submit" />
-        </form>
+              autoFocus
+              required
+            />
+
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+        <Cart items={cart} removeItem={removeItem} />
+        <button onClick={() => finalizePurchase(cart)}>Complete</button>
       </div>
-      <Cart items={cart} removeItem = { removeItem }/>
-      <button onClick={() => finalizePurchase(cart)}>Complete</button>
-    </div>
-  </>
-)
+    </>
+  )
 }
 
 export default App
