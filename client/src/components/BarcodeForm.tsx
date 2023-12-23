@@ -6,7 +6,7 @@ export default function BarcodeForm(props: any) {
         // Access the form data
         const barcodeValue : number = parseInt(event.target.elements.barcode.value);
 
-        const product: any | undefined = props.productsList.find((product: any) => product.barcode == barcodeValue)
+        const product: Product = props.productsList.find((product: Product) => product.barcode == barcodeValue)
 
         // Check if the product exists
         if (!product) {
@@ -15,7 +15,7 @@ export default function BarcodeForm(props: any) {
         }    
 
         // Check if the product is already in the cart
-        const productInCart = props.cart.find(product => product.barcode === barcodeValue);
+        const productInCart = props.cart.find((product: Product) => product.barcode === barcodeValue);
         if (productInCart?.quantity >= product?.quantity ||
             product?.quantity <= 0
             ) {
@@ -24,7 +24,7 @@ export default function BarcodeForm(props: any) {
         }
 
         if (productInCart) {
-            const updatedCart = props.cart.map((product: any) => {
+            const updatedCart = props.cart.map((product: Product) => {
                 if (product.barcode === barcodeValue) {
                     return {
                         ...product,

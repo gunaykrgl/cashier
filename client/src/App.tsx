@@ -5,13 +5,6 @@ import BarcodeForm from './components/BarcodeForm'
 import Navbar from './components/Navbar'
 import { useState, useEffect } from 'react'
 
-interface Product {
-  name: string;
-  quantity: number;
-  price: number;
-  barcode: Number;
-}
-
 function App() {
   const [cart, setCart] = useState<Product[]>([])
 
