@@ -7,14 +7,17 @@ import { useState, useEffect } from 'react'
 
 function App() {
   const [cart, setCart] = useState<Product[]>([])
-
+  
+  //! REFACTOR: This is a hack to force the productsList to refresh
+  const [shouldRefresh, setShouldRefresh] = useState<boolean>(false)
+  
   // Fetch the products list from the server
   const [productsList, setProductsList] = useState<Product[]>([])
   useEffect(() => {
     fetch('http://localhost:9000/getProductsList')
       .then((res) => res.json())
       .then((data) => setProductsList(data))
-  }, [])
+  }, [shouldRefresh])
 
 
   function finalizePurchase(cart: any) {
@@ -32,7 +35,7 @@ function App() {
       },
       body: JSON.stringify(productsToSend)
     })
-
+    setShouldRefresh(!shouldRefresh)
     setCart([])
   }
 
