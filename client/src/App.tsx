@@ -47,7 +47,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className='barcodePage'>
+      <div className='mainContainer'>
 
         <BarcodeForm
           productsList={productsList}

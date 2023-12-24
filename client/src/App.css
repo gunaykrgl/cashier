@@ -1,23 +1,8 @@
-.barcodeLookup {
-    
-    
-}
-.barcodePage {
-    
-    height: 100vh;
-    width: 100vw;
+.mainContainer {
+    height: 90vh;
+    width: 90vw;
     display: flex;
     flex-direction: column;
-    gap: 40px;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+    align-items: center;
+    gap: 20px;
 }
