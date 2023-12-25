@@ -7,6 +7,7 @@ import cors from "cors";
 import config from "../config";
 
 import productRouter from './routes/productAPI';
+import authRouter from './routes/auth';
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', indexRouter);
 app.use('/', productRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req: any, res: any, next: (arg0: any) => void) {
