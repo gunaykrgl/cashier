@@ -16,7 +16,11 @@ app.set('views', path.join(config.projectRoot ,'views'));
 app.set('view engine', 'jade');
 
 // Enable CORS for all routes
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+  
+}));
 
 app.use(logger('dev'));
 app.use(express.json());
