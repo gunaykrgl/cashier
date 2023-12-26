@@ -28,7 +28,7 @@ const Login: React.FC = () => {
             const text = await response.text();
             
             console.log(text)
-             
+            
             // Handle the response here
         } catch (error) {
             // Handle any errors here

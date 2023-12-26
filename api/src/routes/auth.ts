@@ -20,8 +20,8 @@ router.post("/login", async (req, res) => {
     // Generate a JWT token
     const token = jwt.sign({ username }, "secretKey");
 
-    // Set the JWT token as a cookie in the response
-    res.cookie("jwt", token, { httpOnly: true });
+    // Set an auth token as a cookie in the response
+    res.cookie("auth", token, { httpOnly: true });
 
     // Send a success response
     res.send("Login successful");
