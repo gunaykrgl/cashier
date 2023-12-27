@@ -20,8 +20,11 @@ router.post("/login", async (req, res) => {
     // Generate a JWT token
     const token = jwt.sign({ username }, "secretKey");
 
+    let currentDate = new Date();
+    let nextYearDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1));
+    
     // Set an auth token as a cookie in the response
-    res.cookie("auth", token, { httpOnly: true });
+    res.cookie("auth", token, { httpOnly: true, expires: nextYearDate });
 
     // Send a success response
     res.send("Login successful");
