@@ -117,4 +117,18 @@ export default class sqliteHandler extends dbHandler.databaseHandler {
         });
     }
 
+    // Add a new product
+    async addProduct(product: IProduct): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const query = `INSERT INTO ${this.tableName} (barcode, name, price, quantity) VALUES (?, ?, ?, ?)`;
+            this.db.run(query, [product.barcode, product.name, product.price, product.quantity], (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+
 }

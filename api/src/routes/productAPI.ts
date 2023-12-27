@@ -9,16 +9,16 @@ const db: any = new sqliteHandler(config.DBSOURCE, "product");
 
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.auth;
-  
+
   if (!token) {
     return res.status(403).json({ error: 'Not authenticated' });
   }
   try {
     //! Move secret key toa more secure place
-    const user = jwt.verify(token, "secretKey"); 
+    const user = jwt.verify(token, "secretKey");
     console.log(user)
     // req.user = user;
-    
+
     next();
   } catch (err) {
     console.log(err);
@@ -38,7 +38,7 @@ router.get("/getProductsList", async (req: Request, res: Response, next: NextFun
     const rows = await db.getProducts()
     res.status(200).json(rows)
   }
-  catch (err){
+  catch (err) {
     console.log(err)
   }
 
@@ -86,9 +86,16 @@ router.post("/finalizeCart", async (req: Request, res: Response) => {
 });
 
 // Add a new product
-router.get("/addProduct", isAuthenticated, async (req: Request, res: Response) => {
-  
-  res.send("Add Product Page");
+router.post("/addProduct", isAuthenticated, async (req: Request, res: Response) => {
+  // barcode, name, price, quantity
+  const { barcode, name, price, quantity } = req.body;
+  try {
+    await db.addProduct({ barcode, name, price, quantity });
+    res.status(200).json({ message: "Product added successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 export default router;
