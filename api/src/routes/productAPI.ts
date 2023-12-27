@@ -2,9 +2,29 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { join } from "path";
 import config from "../../config";
 import sqliteHandler from "../../db/Handlers/sqliteHandler.ts";
+import jwt from "jsonwebtoken";
 
 // const sqliteHandler: any = require(join(config.projectRoot, "db", "Handlers", "sqliteHandler.ts"));
 const db: any = new sqliteHandler(config.DBSOURCE, "product");
+
+const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+  const token = req.cookies.auth;
+  
+  if (!token) {
+    return res.status(403).json({ error: 'Not authenticated' });
+  }
+  try {
+    //! Move secret key toa more secure place
+    const user = jwt.verify(token, "secretKey"); 
+    console.log(user)
+    // req.user = user;
+    
+    next();
+  } catch (err) {
+    console.log(err);
+    res.status(403).json({ error: 'Invalid token' });
+  }
+};
 
 const router: Router = Router();
 
@@ -65,5 +85,10 @@ router.post("/finalizeCart", async (req: Request, res: Response) => {
   }
 });
 
+// Add a new product
+router.get("/addProduct", isAuthenticated, async (req: Request, res: Response) => {
+  
+  res.send("Add Product Page");
+});
 
 export default router;
