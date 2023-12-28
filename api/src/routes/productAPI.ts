@@ -5,7 +5,7 @@ import sqliteHandler from "../../db/Handlers/sqliteHandler.ts";
 import jwt from "jsonwebtoken";
 
 // const sqliteHandler: any = require(join(config.projectRoot, "db", "Handlers", "sqliteHandler.ts"));
-const db: any = new sqliteHandler(config.DBSOURCE, "product");
+const db: sqliteHandler = new sqliteHandler(config.DBSOURCE, "product");
 
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.auth;
