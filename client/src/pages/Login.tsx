@@ -26,9 +26,9 @@ const Login: React.FC = () => {
                 credentials: 'include', // Include cookies in the request
             });
             const text = await response.text();
-            
+
             console.log(text)
-            
+
             // Handle the response here
         } catch (error) {
             // Handle any errors here
@@ -36,30 +36,15 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className={styles.loginContainer}>
-
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                        type="text"
-                        id="username"
-                        value={username}
-                        onChange={handleUsernameChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                    />
-                </div>
-                <button type="submit">Login</button>
-            </form>
-        </div>
+        <form onSubmit={handleSubmit} className={styles.loginForm}>
+            <label>Username
+                <input type="text" value={username} placeholder='Enter Username' onChange={handleUsernameChange} />
+            </label>
+            <label>Password
+                <input type="password" value={password} placeholder='Enter Password' onChange={handlePasswordChange} />
+            </label>
+            <button type="submit">Submit</button>
+        </form>
     );
 };
 
