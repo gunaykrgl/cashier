@@ -27,25 +27,28 @@ const Login: React.FC = () => {
             });
             const text = await response.text();
 
-            console.log(text)
+            if (response.status === 200) {
+                window.location.href = '/';
+            }
 
-            // Handle the response here
-        } catch (error) {
-            // Handle any errors here
-        }
+
+                // Handle the response here
+            } catch (error) {
+                // Handle any errors here
+            }
+        };
+
+        return (
+            <form onSubmit={handleSubmit} className={styles.loginForm}>
+                <label>Username
+                    <input type="text" value={username} placeholder='Enter Username' onChange={handleUsernameChange} />
+                </label>
+                <label>Password
+                    <input type="password" value={password} placeholder='Enter Password' onChange={handlePasswordChange} />
+                </label>
+                <button type="submit">Submit</button>
+            </form>
+        );
     };
 
-    return (
-        <form onSubmit={handleSubmit} className={styles.loginForm}>
-            <label>Username
-                <input type="text" value={username} placeholder='Enter Username' onChange={handleUsernameChange} />
-            </label>
-            <label>Password
-                <input type="password" value={password} placeholder='Enter Password' onChange={handlePasswordChange} />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
-    );
-};
-
-export default Login;
+    export default Login;
