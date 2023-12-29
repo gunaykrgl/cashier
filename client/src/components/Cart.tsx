@@ -2,8 +2,7 @@ import "./Cart.css"
 import { FaTrash } from "react-icons/fa";
 
 export default function Cart(props: any) {
-    const itemsArray = Object.values(props.items);
-    console.log(itemsArray[0]);
+    const itemsArray = Object.values(props.items);    
 
     return (
         <div className="cartTable">
@@ -14,7 +13,6 @@ export default function Cart(props: any) {
                         <th>Quantity</th>
                         <th>Per Item Price</th>
                         <th>Price</th>
-                        
                     </tr>
                 </thead>
                 <tbody>

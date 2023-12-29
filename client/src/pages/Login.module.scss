@@ -1,0 +1,26 @@
+.loginForm {
+    display: flex;
+    flex-direction: column;
+
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.loginForm label {    
+    display: flex;
+    justify-content: space-between;
+}
+
+.loginForm input {
+    width: 70%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+
+    margin-left: 10px;
+    
+}
