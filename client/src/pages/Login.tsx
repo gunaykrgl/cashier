@@ -25,7 +25,6 @@ const Login: React.FC = () => {
                 body: JSON.stringify({ username, password }),
                 credentials: 'include', // Include cookies in the request
             });
-            const text = await response.text();
 
             if (response.status === 200) {
                 window.location.href = '/';
