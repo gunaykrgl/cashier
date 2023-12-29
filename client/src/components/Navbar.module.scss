@@ -1,0 +1,30 @@
+nav {
+    position: sticky; 
+    top: 0;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    // background-color: gray;
+    color: #fff;
+    
+    width: 100%; 
+}
+
+.navLinks {
+    list-style: none;
+    margin: 0 1rem;
+    display: flex;
+    gap: 1rem;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        color: #bada55;
+      }
+    }
+}
