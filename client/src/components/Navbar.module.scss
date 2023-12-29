@@ -2,14 +2,17 @@ nav {
     position: fixed; 
     top: 0;
     left: 5%;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
     
     color: #fff;
     
-    width: 90%; 
+    width: 90%;
+    margin-bottom: 2rem; // Add bottom margin here
 }
+
 
 .navLinks {
     list-style: none;
