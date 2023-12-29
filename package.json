@@ -8,7 +8,7 @@
     "install-client": "cd client && npm install",
     "start-api": "cd api && npm start",
     "start-client": "cd client && npm run dev",
-    "start": "concurrently \"npm run start-api\" \"npm run start-client\""
+    "start-all": "concurrently \"npm run start-api\" \"npm run start-client\""
   },
   "repository": {
     "type": "git",
