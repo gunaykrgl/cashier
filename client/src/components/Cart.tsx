@@ -1,11 +1,11 @@
-import "./Cart.css"
 import { FaTrash } from "react-icons/fa";
+import styles from "./Cart.module.scss";
 
 export default function Cart(props: any) {
     const itemsArray = Object.values(props.items);    
 
     return (
-        <div className="cartTable">
+        <div className={styles.tableContainer}>
             <table>
                 <thead>
                     <tr>
