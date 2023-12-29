@@ -1,15 +1,14 @@
 nav {
-    position: sticky; 
+    position: fixed; 
     top: 0;
-    
+    left: 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     
-    // background-color: gray;
     color: #fff;
     
-    width: 100%; 
+    width: 90%; 
 }
 
 .navLinks {

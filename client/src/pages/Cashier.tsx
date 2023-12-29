@@ -45,7 +45,6 @@ function Cashier() {
 
   return (
     <>
-      <div className='mainContainer'>
 
         <BarcodeForm
           productsList={productsList}
@@ -56,7 +55,6 @@ function Cashier() {
           removeItem={removeItem}
         />
         <button onClick={() => finalizePurchase(cart)}>Complete</button>
-      </div>
     </>
   )
 }
