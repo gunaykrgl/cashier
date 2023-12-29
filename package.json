@@ -1,0 +1,26 @@
+{
+  "name": "cashier",
+  "version": "1.0.0",
+  "description": "### product API",
+  "main": "demoRun.js",
+  "scripts": {
+    "install-api": "cd api && npm install",
+    "install-client": "cd client && npm install",
+    "start-api": "cd api && npm start",
+    "start-client": "cd client && npm run dev",
+    "start": "concurrently \"npm run start-api\" \"npm run start-client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gunaykrgl/cashier.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gunaykrgl/cashier/issues"
+  },
+  "homepage": "https://github.com/gunaykrgl/cashier#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
