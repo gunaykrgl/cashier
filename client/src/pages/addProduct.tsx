@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from "./addProduct.module.scss";
 
 export default function AddProduct() {
     const [barcode, setBarcode] = useState('');
@@ -24,8 +25,8 @@ export default function AddProduct() {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <label>
                     Barcode:
                     <input type="text" value={barcode} onChange={(e) => setBarcode(e.target.value)} />
@@ -44,7 +45,7 @@ export default function AddProduct() {
                 </label>
                 <button type="submit">Submit</button>
             </form>
-        </div>
+        </>
     );
 }
         
