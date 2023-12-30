@@ -1,4 +1,3 @@
-import './Cashier.css'
 import Cart from "../components/Cart"
 import BarcodeForm from '../components/BarcodeForm'
 
@@ -6,10 +5,10 @@ import { useState, useEffect } from 'react'
 
 function Cashier() {
   const [cart, setCart] = useState<Product[]>([])
-  
+
   //! REFACTOR: This is a hack to force the productsList to refresh
   const [shouldRefresh, setShouldRefresh] = useState<boolean>(false)
-  
+
   // Fetch the products list from the server
   const [productsList, setProductsList] = useState<Product[]>([])
   useEffect(() => {
@@ -45,16 +44,15 @@ function Cashier() {
 
   return (
     <>
-
-        <BarcodeForm
-          productsList={productsList}
-          cart={cart}
-          setCart={setCart}
-        />
-        <Cart items={cart}
-          removeItem={removeItem}
-        />
-        <button onClick={() => finalizePurchase(cart)}>Complete</button>
+      <BarcodeForm
+        productsList={productsList}
+        cart={cart}
+        setCart={setCart}
+      />
+      <Cart items={cart}
+        removeItem={removeItem}
+      />
+      <button onClick={() => finalizePurchase(cart)}>Complete</button>
     </>
   )
 }
