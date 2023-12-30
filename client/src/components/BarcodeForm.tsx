@@ -1,3 +1,5 @@
+import styles from './BarcodeForm.module.scss'
+
 export default function BarcodeForm(props: any) {
     // Creates a text field for barcode
     function handleSubmit(event: any) {
@@ -45,21 +47,21 @@ export default function BarcodeForm(props: any) {
 
 
     return (
-        <>
+        <div >
             <p>Enter the barcode below to add a product to cart:</p>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <input
                     type="number"
                     name="barcode"
                     autoComplete="off"
                     placeholder="barcode"
-
+                    
                     autoFocus
                     required
                 />
 
                 <input type="submit" value="Submit" />
             </form>
-        </>
+        </div>
     )
 }
