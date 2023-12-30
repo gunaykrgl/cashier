@@ -30,14 +30,13 @@ const Login: React.FC = () => {
                 window.location.href = '/';
             }
 
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-                // Handle the response here
-            } catch (error) {
-                // Handle any errors here
-            }
-        };
-
-        return (
+    return (
+        <>
             <form onSubmit={handleSubmit} className={styles.loginForm}>
                 <label>Username
                     <input type="text" value={username} placeholder='Enter Username' onChange={handleUsernameChange} />
@@ -47,7 +46,8 @@ const Login: React.FC = () => {
                 </label>
                 <button type="submit">Submit</button>
             </form>
-        );
-    };
+        </>
+    );
+};
 
-    export default Login;
+export default Login;
