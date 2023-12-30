@@ -1,5 +1,5 @@
 import styles from "./Navbar.module.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
     return (
@@ -10,12 +10,8 @@ export default function Navbar() {
                 </Link>
             </div>
             <ul className={styles.navLinks}>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/login">Login</Link>
-                </li>
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="/login">Login</NavLink>
             </ul>
         </nav>
     )
