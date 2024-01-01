@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    thead {
+        background-color: #f2f2f2;
+        tr {
+            th {
+                padding: 8px;
+                width: 140px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                padding: 8px;
+                text-align: left;
+                border: 1px solid #ddd;
+                width: 140px;
+
+                input {
+                    width: 140px;
+                }
+            }
+        }
+    }
+}
