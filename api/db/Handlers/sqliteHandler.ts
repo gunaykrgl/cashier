@@ -1,10 +1,10 @@
 import sqlite3 from 'sqlite3';
-import dbHandler from "./databaseHandler.ts";
+import productDatabaseHandler from "./productDatabaseHandler.ts";
 
 import { IProduct } from "../../src/interfaces/product.interface.ts";
 import * as tableSchemas from "../Schemas.ts" ;
 
-export default class sqliteHandler extends dbHandler.databaseHandler {
+export default class sqliteHandler extends productDatabaseHandler {
     private tableName: string;
     private db: sqlite3.Database;
     private path: string;
