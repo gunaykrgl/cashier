@@ -24,7 +24,7 @@ router.post("/login", async (req, res) => {
     let nextYearDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1));
     
     // Set an auth token as a cookie in the response
-    res.cookie("auth", token, { httpOnly: true, expires: nextYearDate });
+    res.cookie("auth", token, { httpOnly: false, expires: nextYearDate });
 
     // Send a success response
     res.send("Login successful");
@@ -32,6 +32,22 @@ router.post("/login", async (req, res) => {
     // Send an error response
     res.status(401).send("Invalid username or password");
   }
+});
+
+router.get("/validate-token", (req, res) => {
+  const token = req.cookies.auth;
+  if (!token) {
+    return res.status(401).send("No token provided");
+  }
+
+  jwt.verify(token, "secretKey", (err : any, decoded : any) => {
+    if (err) {
+      return res.status(401).send("Invalid token");
+    }
+
+    // Token is valid
+    res.send("Token is valid");
+  });
 });
 
 export default router;
