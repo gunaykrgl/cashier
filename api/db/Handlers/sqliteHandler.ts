@@ -131,4 +131,31 @@ export default class sqliteHandler extends productDatabaseHandler {
         });
     }
 
+    // Update a product
+    async updateProduct(product: IProduct): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const query = `UPDATE ${this.tableName} SET name = ?, price = ?, quantity = ? WHERE barcode = ?`;
+            this.db.run(query, [product.name, product.price, product.quantity, product.barcode], (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+
+    // Delete a product
+    async deleteProduct(barcode: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const query = `DELETE FROM ${this.tableName} WHERE barcode = ?`;
+            this.db.run(query, [barcode], (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
 }

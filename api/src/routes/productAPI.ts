@@ -98,4 +98,30 @@ router.post("/addProduct", isAuthenticated, async (req: Request, res: Response) 
   }
 });
 
+// Update a product
+router.post("/updateProduct", isAuthenticated, async (req: Request, res: Response) => {
+  const { barcode, name, price, quantity } = req.body;
+  // console.log(barcode, name, price, quantity);
+  //! Validation needed
+  try {
+    await db.updateProduct({ barcode, name, price, quantity });
+    res.status(200).json({ message: "Product updated successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Delete a product
+router.post("/deleteProduct", isAuthenticated, async (req: Request, res: Response) => {
+  const { barcode } = req.body;
+  try {
+    await db.deleteProduct(barcode);
+    res.status(200).json({ message: "Product deleted successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 export default router;
